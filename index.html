@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special for Olaf</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="olaf.css">
+</head>
+<body class="relative min-h-screen selection:bg-rose-500/30 selection:text-rose-200">
+
+    <canvas id="bgCanvas" class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"></canvas>
+    <canvas id="confettiCanvas" class="fixed top-0 left-0 w-full h-full z-50 pointer-events-none"></canvas>
+
+    <div class="fixed top-6 right-6 z-50 flex items-center gap-3 bg-slate-900/80 backdrop-blur-md px-4 py-2 rounded-full border border-rose-500/30 shadow-lg">
+        <span class="text-xs text-rose-300 font-medium tracking-wider animate-pulse hidden md:inline">🎵 Olaf's Theme</span>
+        
+        <audio id="romanticAudio" loop src="Stephen Sanchez - Until I Found You (Official Audio).mp3"></audio>
+        
+        <button id="audioBtn" onclick="toggleAudio()" class="w-8 h-8 rounded-full bg-rose-500 hover:bg-rose-600 flex items-center justify-center text-white transition-all transform hover:scale-110 active:scale-95 cursor-pointer">
+            <span id="audioIcon">▶</span>
+        </button>
+    </div>
+
+    <main class="max-w-4xl mx-auto px-4 py-12 space-y-28 relative z-10">
+        
+        <section id="hero" class="min-h-[85vh] flex flex-col justify-center items-center text-center space-y-6 pt-12">
+            <div class="inline-block px-4 py-1.5 bg-rose-500/10 text-rose-300 border border-rose-500/20 rounded-full text-xs font-semibold tracking-widest uppercase mb-2 box-glow">
+                Hanya Untukmu
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tight font-serif-elegant">
+                Hai, <span class="glow-pink text-rose-400">Olaf</span>.
+            </h1>
+            <div class="h-12 flex items-center justify-center">
+                <p id="typingText" class="text-lg md:text-xl text-slate-300 border-r-2 border-rose-400 pr-1 font-light tracking-wide min-h-[1.5rem]"></p>
+            </div>
+            <div class="pt-12 animate-bounce">
+                <a href="#counter" class="text-rose-300/60 hover:text-rose-300 text-sm tracking-widest uppercase flex flex-col items-center gap-2 transition-colors">
+                    <span>Scroll Kebawah Yuk</span>
+                    <span>↓</span>
+                </a>
+            </div>
+        </section>
+
+        <section id="counter" class="scroll-mt-24 bg-slate-950/60 backdrop-blur-md p-8 md:p-12 rounded-3xl box-glow text-center space-y-8">
+            <div class="space-y-2">
+                <h2 class="text-2xl md:text-3xl font-bold font-serif-elegant text-rose-200">Waktu Kita Bersama</h2>
+                <p class="text-sm text-slate-400 max-w-md mx-auto">Setiap momen bersamamu adalah lembaran waktu terbaik yang selalu aku syukuri sepanjang hidupku.</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+                <div class="bg-slate-900/80 p-5 rounded-2xl border border-slate-800 flex flex-col justify-center">
+                    <span id="cntDays" class="text-3xl md:text-4xl font-bold text-rose-400 font-serif-elegant">00</span>
+                    <span class="text-xs text-slate-400 uppercase tracking-widest mt-1">Hari</span>
+                </div>
+                <div class="bg-slate-900/80 p-5 rounded-2xl border border-slate-800 flex flex-col justify-center">
+                    <span id="cntHours" class="text-3xl md:text-4xl font-bold text-rose-300 font-serif-elegant">00</span>
+                    <span class="text-xs text-slate-400 uppercase tracking-widest mt-1">Jam</span>
+                </div>
+                <div class="bg-slate-900/80 p-5 rounded-2xl border border-slate-800 flex flex-col justify-center">
+                    <span id="cntMinutes" class="text-3xl md:text-4xl font-bold text-rose-200 font-serif-elegant">00</span>
+                    <span class="text-xs text-slate-400 uppercase tracking-widest mt-1">Menit</span>
+                </div>
+                <div class="bg-slate-900/80 p-5 rounded-2xl border border-slate-800 flex flex-col justify-center">
+                    <span id="cntSeconds" class="text-3xl md:text-4xl font-bold glow-gold font-serif-elegant">00</span>
+                    <span class="text-xs text-slate-400 uppercase tracking-widest mt-1">Detik</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="letter" class="scroll-mt-24 flex flex-col items-center space-y-8">
+            <h2 class="text-2xl md:text-3xl font-bold font-serif-elegant text-rose-200 text-center">Ada Surat Buat Kamu</h2>
+            
+            <div id="envelopeWrapper" onclick="openLetter()" class="w-full max-w-md bg-slate-900 rounded-2xl p-6 border border-rose-500/20 box-glow cursor-pointer transform hover:-translate-y-2 transition-all duration-500 group relative overflow-hidden">
+                <div id="envelopeClosed" class="flex flex-col items-center py-12 space-y-4">
+                    <div class="text-6xl group-hover:scale-110 transition-transform duration-300">✉️</div>
+                    <p class="text-rose-300 text-sm tracking-wider font-medium animate-pulse">Klik Untuk Buka</p>
+                </div>
+                
+                <div id="envelopeOpen" class="hidden transition-all duration-700 opacity-0 transform translate-y-4 space-y-6 text-slate-300 leading-relaxed text-sm md:text-base text-justify font-light">
+                    <div class="text-center text-3xl">🌹</div>
+                    <p class="font-serif-elegant italic text-center text-rose-200 text-lg">Teruntuk Olaf Sayang,</p>
+                    <p>
+                        Menulis ini membuatku sadar betapa beruntungnya aku memilikimu. Di dalam semesta yang begitu luas, dengan jutaan probabilitas dan ketidakpastian, takdir entah bagaimana membawa langkah kita untuk bertemu dan saling menetap. Kamu adalah ketenangan di tengah hiruk-pikuk duniaku, dan senyumanmu selalu menjadi alasan terbaikku untuk menyelesaikan hari dengan bahagia.
+                    </p>
+                    <p>
+                        Terima kasih sudah menjadi sosok yang penyabar, penuh kasih, dan selalu menerima segala kurangku dengan hati terbuka. Bersamamu, aku tidak perlu berpura-pura menjadi orang lain. Aku mencintaimu bukan hanya karena siapa dirimu saat ini, tetapi juga karena bagaimana caramu membuatku merasa menjadi versi terbaik dari diriku sendiri.
+                    </p>
+                    <p>
+                        Surat kecil ini hanyalah untaian kata yang tidak akan pernah cukup untuk menampung seluruh rasa kasihku padamu. Namun, ketahuilah bahwa di setiap detak jam yang berganti, rasaku padamu akan tetap utuh, tumbuh dengan dewasa, dan selalu menjagamu.
+                    </p>
+                    <div class="pt-4 border-t border-rose-500/20 text-center">
+                        <p class="text-xs tracking-widest uppercase text-slate-400">Selamanya Milikmu,</p>
+                        <p class="font-serif-elegant text-rose-300 mt-2 font-bold text-lg">🤍 Seseorang yang Menyayangimu</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="scroll-mt-24 space-y-8">
+            <div class="text-center space-y-2">
+                <h2 class="text-2xl md:text-3xl font-bold font-serif-elegant text-rose-200">Kepingan Kenangan</h2>
+                <p class="text-sm text-slate-400 max-w-md mx-auto">Beberapa potret sederhana yang selalu bikin aku senyum tiap kali melihatnya kembali.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <div class="group overflow-hidden rounded-2xl bg-slate-900/60 border border-slate-800 p-2 transform hover:-translate-y-1.5 transition-all duration-300 box-glow">
+                    <div class="overflow-hidden rounded-xl h-52 bg-slate-800 flex items-center justify-center relative">
+                        <img src="WhatsApp Image 2026-06-18 at 00.46.36 (1).jpeg" alt="Momen Kita" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                    </div>
+                    <p class="text-xs text-center text-slate-400 mt-3 font-medium italic group-hover:text-rose-300 transition-colors">"Saat pertama kali kita kenal..."</p>
+                </div>
+
+                <div class="group overflow-hidden rounded-2xl bg-slate-900/60 border border-slate-800 p-2 transform hover:-translate-y-1.5 transition-all duration-300 box-glow">
+                    <div class="overflow-hidden rounded-xl h-52 bg-slate-800 flex items-center justify-center relative">
+                        <img src="WhatsApp Image 2026-06-18 at 00.46.45.jpeg" alt="Tawa Olaf" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                    </div>
+                    <p class="text-xs text-center text-slate-400 mt-3 font-medium italic group-hover:text-rose-300 transition-colors">"Senyum favorit yang selalu menenangkan."</p>
+                </div>
+
+                <div class="group overflow-hidden rounded-2xl bg-slate-900/60 border border-slate-800 p-2 transform hover:-translate-y-1.5 transition-all duration-300 box-glow sm:col-span-2 md:col-span-1">
+                    <div class="overflow-hidden rounded-xl h-52 bg-slate-800 flex items-center justify-center relative">
+                        <img src="WhatsApp Image 2026-06-18 at 00.46.36.jpeg" alt="Momen Manis" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100">
+                    </div>
+                    <p class="text-xs text-center text-slate-400 mt-3 font-medium italic group-hover:text-rose-300 transition-colors">"Saling mendukung melewati hari."</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="arcade" class="scroll-mt-24 space-y-12">
+            <div class="text-center space-y-2">
+                <h2 class="text-3xl font-bold font-serif-elegant text-rose-200">Main Sebentar Yuk</h2>
+                <p class="text-sm text-slate-400 max-w-md mx-auto">Aku buatin beberapa permainan interaktif kecil untuk hibur kamu hari ini.</p>
+            </div>
+
+            <div class="flex justify-center gap-2 border-b border-slate-800 pb-2">
+                <button onclick="switchGame(1)" id="tabBtn1" class="px-4 py-2 text-xs md:text-sm font-medium rounded-xl transition-all cursor-pointer bg-rose-500 text-white">Catch Hearts</button>
+                <button onclick="switchGame(2)" id="tabBtn2" class="px-4 py-2 text-xs md:text-sm font-medium rounded-xl transition-all cursor-pointer text-slate-400 hover:text-rose-300">Memory Match</button>
+                <button onclick="switchGame(3)" id="tabBtn3" class="px-4 py-2 text-xs md:text-sm font-medium rounded-xl transition-all cursor-pointer text-slate-400 hover:text-rose-300">Pertanyaan Cinta</button>
+            </div>
+
+            <div id="gameArea1" class="game-container bg-slate-950/60 p-6 rounded-3xl box-glow max-w-xl mx-auto space-y-4">
+                <div class="flex justify-between items-center px-2">
+                    <h3 class="font-bold text-rose-300">Game 1: Catch My Hearts</h3>
+                    <div class="text-sm font-semibold">Skor: <span id="catchScore" class="text-rose-400 text-lg">0</span></div>
+                </div>
+                <p class="text-xs text-slate-400 text-center">Gerakkan keranjang pakai mouse atau usap layar HP buat tangkap hati merah!</p>
+                
+                <div id="catchCanvasBox" class="relative w-full h-64 bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 touch-none">
+                    <div id="basket" class="absolute bottom-2 left-1/2 -translate-x-1/2 text-3xl select-none transition-all duration-75">🧺</div>
+                    <div id="fallingHeart" class="absolute top-0 left-10 text-2xl select-none">💖</div>
+                </div>
+                <div class="text-center min-h-[1.5rem]">
+                    <span id="catchFeedback" class="text-xs font-serif-elegant text-rose-300 italic"></span>
+                </div>
+            </div>
+
+            <div id="gameArea2" class="game-container hidden bg-slate-950/60 p-6 rounded-3xl box-glow max-w-xl mx-auto space-y-6">
+                <div class="flex justify-between items-center">
+                    <h3 class="font-bold text-rose-300">Game 2: Memory Match</h3>
+                    <button onclick="resetMemoryGame()" class="text-xs bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg border border-slate-700 cursor-pointer transition-colors">Acak Ulang</button>
+                </div>
+                
+                <div id="memoryGrid" class="grid grid-cols-4 gap-3 max-w-sm mx-auto"></div>
+                <div id="memoryMessage" class="hidden text-center p-4 bg-rose-500/10 border border-rose-500/20 rounded-xl animate-fade-in">
+                    <p class="text-sm text-rose-200 font-serif-elegant">🎉 Wah hebat! Kamu berhasil! Pesan Rahasia: "Kamu adalah potongan pelengkap terbaik teka-teki hidupku."</p>
+                </div>
+            </div>
+
+            <div id="gameArea3" class="game-container hidden bg-slate-950/60 p-8 rounded-3xl box-glow max-w-md mx-auto text-center space-y-8 min-h-[300px] flex flex-col justify-center relative">
+                <h3 class="text-xl md:text-2xl font-bold font-serif-elegant text-rose-100">Apakah Olaf sayang aku? 🤔</h3>
+                
+                <div id="btnContainer" class="flex justify-center items-center gap-6 w-full min-h-[50px] relative">
+                    <button onclick="selectYes()" class="px-6 py-2.5 bg-rose-500 hover:bg-rose-600 font-semibold rounded-xl shadow-lg shadow-rose-500/20 cursor-pointer transition-all transform active:scale-95 z-10">
+                        Bisa Banget!
+                    </button>
+                    <button id="noBtn" onmouseover="teleportNoButton()" ontouchstart="teleportNoButton(event)" class="no-btn px-6 py-2.5 bg-slate-800 hover:bg-slate-700 font-medium rounded-xl border border-slate-700 cursor-pointer transition-all duration-200 z-10">
+                        Enggak
+                    </button>
+                </div>
+                <p class="text-xs text-slate-500 italic">Petunjuk: Coba aja kalau bisa menekan tombol abu-abu!</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="w-full text-center py-8 border-t border-slate-900 mt-24 text-xs text-slate-600 tracking-widest uppercase">
+        Special for Olaf © 2026
+    </footer>
+    <script src="olaf.js"></script>
+    </body>
+    </html>
